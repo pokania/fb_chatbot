@@ -33,8 +33,10 @@ const
 // Sets server port and logs message on success
 app.listen(config.port || 3000, () => console.log('webhook is listening'));
 
+const verifyToken = process.env.VERIFY_TOKEN;
+
 app.get('/', (req, res) => {
-    res.send("Hello World!, " + config.verifyToken);
+    res.send("Hello World!, " + verifyToken);
 })
 
 // Accepts POST requests at /webhook endpoint
