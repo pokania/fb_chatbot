@@ -27,14 +27,12 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  config = require('config'),
   app = express().use(body_parser.json()); // creates express http server
 
 // Sets server port and logs message on success
-app.listen(config.port || 3000, () => console.log('webhook is listening'));
+app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
 
-const verifyToken = process.env.VERIFY_TOKEN;
-
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 app.get('/', (req, res) => {
     res.send("Hello World!, " + verifyToken);
 })
@@ -83,7 +81,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
   
   /** UPDATE YOUR VERIFY TOKEN **/
-  const VERIFY_TOKEN = config.verifyToken;
+  const verifyToken = process.env.VERIFY_TOKEN;
   
   // Parse params from the webhook verification request
   let mode = req.query['hub.mode'];
@@ -94,7 +92,7 @@ app.get('/webhook', (req, res) => {
   if (mode && token) {
   
     // Check the mode and token sent are correct
-    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+    if (mode === 'subscribe' && token === verifyToken) {
       
       // Respond with 200 OK and challenge token from the request
       console.log('WEBHOOK_VERIFIED');
