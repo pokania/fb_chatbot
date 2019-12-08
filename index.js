@@ -35,7 +35,7 @@ app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const verifyToken = process.env.VERIFY_TOKEN;
 app.get('/', (req, res) => {
-    res.send("Hello World!, " + verifyToken);
+    res.send("DDDD, " + verifyToken);
 })
 
 // Accepts POST requests at /webhook endpoint
