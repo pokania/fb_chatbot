@@ -33,7 +33,7 @@ const
 app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
 
 app.get('/', (req, res) => {
-    res.send("Hello World!");
+    res.send("Hello World!, " + PAGE_ACCESS_TOKEN);
 })
 
 // Accepts POST requests at /webhook endpoint
