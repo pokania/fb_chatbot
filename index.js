@@ -32,8 +32,8 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
 
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const verifyToken = process.env.VERIFY_TOKEN;
+//const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+//const verifyToken = process.env.VERIFY_TOKEN;
 app.get('/', (req, res) => {
     res.send("DDDD, " + verifyToken);
 })
@@ -82,7 +82,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
   
   /** UPDATE YOUR VERIFY TOKEN **/
-  const verifyToken = process.env.VERIFY_TOKEN;
+  const verifyToken = "trick";
   
   // Parse params from the webhook verification request
   let mode = req.query['hub.mode'];
