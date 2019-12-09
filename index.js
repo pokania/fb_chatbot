@@ -27,15 +27,17 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
+  dontenv = require('dotenv'),
   app = express().use(body_parser.json()); // creates express http server
 
+  dontenv.config();
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
 
 //const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 //const verifyToken = process.env.VERIFY_TOKEN;
 app.get('/', (req, res) => {
-    res.send("DDDD, " + verifyToken);
+    res.send("DDDD, " + process.env.PORT);
 })
 
 // Accepts POST requests at /webhook endpoint
