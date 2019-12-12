@@ -34,10 +34,10 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
 
-//const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 app.get('/', (req, res) => {
-    res.send("DDDD, " + process.env.VERIFY_TOKEN);
+    res.send("HELLO WORLD!");
 })
 
 // Accepts POST requests at /webhook endpoint
@@ -84,7 +84,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
   
   /** UPDATE YOUR VERIFY TOKEN **/
-  const verifyToken = "trick";
+  const verifyToken = process.env.VERIFY_TOKEN;
   
   // Parse params from the webhook verification request
   let mode = req.query['hub.mode'];
@@ -180,7 +180,7 @@ function callSendAPI(sender_psid, response) {
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
-    "qs": { "access_token": "EAAlwYBTAS84BAP7e5liZB6IHnwtDOTLT9uYZCCwpmYzHigMwQLYf7DAxSGs5IWOSbCi1Cb42psHJQYcRn2cODAPnQo3ghLWxHxChyjpUK78ZB45avzKdoDPZAsJsMcEC9g0nk9JJQtLYbvdwZB88IsdcUb2k3GF7mumkyx2oiKO6LZAoWB6d3YQUbWXebHAzgZD" },
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
